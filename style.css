@@ -1,84 +1,86 @@
-.cards{
-    display: flex;
-    justify-content: space-between;
+.cards {
+  display: flex;
+  justify-content: space-between;
 }
-.card{
-    width: 20%;
+.card {
+  width: 20%;
 }
-.card img{
-    width: 80%;
+.card img {
+  width: 80%;
 }
-header{
-    display: flex;
-    align-items: center;
+header {
+  display: flex;
+  align-items: center;
 }
-header>nav{
-    margin-left: 40px;
+header > nav {
+  margin-left: 40px;
 }
-header>nav>a{
-    padding: 10px;
+header > nav > a {
+  padding: 10px;
 }
-.container{
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-  
+.container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
 }
-.add-trener{
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.add-trener {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-form{
-    width: 30%;
+form {
+  width: 30%;
 }
-.input-group{
-    display: flex;
-    flex-direction: column;
+.input-group {
+  display: flex;
+  flex-direction: column;
 }
 
-.input-group>*{
-    margin: 5px;
+.input-group > * {
+  margin: 5px;
 }
-.i-g-radio{
-    flex-direction: row;
+.i-g-radio {
+  flex-direction: row;
 }
-.flex-column-center{
-    flex-direction: column;
-    align-items: center;
+.flex-column-center {
+  flex-direction: column;
+  align-items: center;
 }
-.trener-item{
-    display: flex;
-    align-items: center;
-    height: 25px;
+.trener-item {
+  display: flex;
+  align-items: center;
+  height: 25px;
 }
-.trener-item>*{
-    margin: 5px;
+.trener-item > * {
+  margin: 5px;
 }
-.btn{
-    background: transparent;
-    padding: 3px;
+.btn {
+  background: transparent;
+  padding: 3px;
 }
-.btn-edit{
-    border: 1px solid orange;
-    color: orange;
+.btn-edit {
+  border: 1px solid orange;
+  color: orange;
 }
-.btn-delete{
-    border: 1px solid red;
-    color: red;
+.btn-delete {
+  border: 1px solid red;
+  color: red;
 }
-.list-trener{
-    width: 30%;
+.list-trener {
+  width: 30%;
 }
-.form-edit{
-    width: 80%;
+.form-edit {
+  width: 80%;
 }
-.error_form{
-    color: red;
+.error_form {
+  color: red;
 }
-nav{
-    display: flex;
-    align-items: center;
+nav {
+  display: flex;
+  align-items: center;
+}
+.accPhoto{
+  width: 10px;
 }

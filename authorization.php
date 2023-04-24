@@ -8,18 +8,16 @@ include("header.php");
         <div class="input-group"><input type="submit" value="Войти"></div>
         <a href="/registration.php" style="margin-left: 210px;">Регистрация</a>
     </form>
-    <div>
         <script>
             let confirm_pass = document.getElementById("password_conf");
             let pass = document.getElementById("password");
             let form = document.getElementById("form_auth");
 
             form.addEventListener("submit", function(event){
-                if(confirm_pass.value !== pass.value){
+                if(confirm_pass.value!=pass.value){
                     event.preventDefault();
                     document.getElementById("error_pass").innerText = "Пароли не совпадают!";
                 }
             })
         </script>
-    </div>
 </div>
