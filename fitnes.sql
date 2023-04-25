@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 24 2023 г., 07:22
+-- Время создания: Апр 25 2023 г., 08:55
 -- Версия сервера: 8.0.24
 -- Версия PHP: 8.0.14
 
@@ -45,11 +45,30 @@ CREATE TABLE `requestes` (
   `id_request` int NOT NULL,
   `client_req` int NOT NULL,
   `trainer_req` int NOT NULL,
-  `status_req` int NOT NULL,
   `reason` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_req` date NOT NULL,
   `purpose` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `requestes`
+--
+
+INSERT INTO `requestes` (`id_request`, `client_req`, `trainer_req`, `reason`, `date_req`, `purpose`) VALUES
+(24, 18, 17, 'Хочу добиться отличного телосложения', '2023-04-25', '-'),
+(25, 19, 7, 'Хочу не сдохнуть в конце барби', '2023-04-25', '-'),
+(26, 19, 7, 'Хочу не сдохнуть в конце барби', '2023-04-25', '-'),
+(27, 19, 7, 'Хочу не сдохнуть в конце барби', '2023-04-25', '-'),
+(28, 19, 7, 'Хочу не сдохнуть в конце барби', '2023-04-25', '-'),
+(29, 19, 7, 'Хочу не сдохнуть в конце барби', '2023-04-25', '-'),
+(30, 19, 7, 'Хочу не сдохнуть в конце барби', '2023-04-25', '-'),
+(31, 19, 7, 'hbuubu', '2023-04-25', '-'),
+(32, 19, 11, 'hbuubu', '2023-04-25', '-'),
+(33, 19, 7, 'qweqweqwe', '2023-04-25', '-'),
+(34, 19, 7, 'qweqweqwe', '2023-04-25', '-'),
+(35, 19, 7, 'qweqweqwe', '2023-04-25', '-'),
+(36, 18, 11, 'rrrht', '2023-04-25', '-'),
+(37, 18, 11, 'rrrht', '2023-04-25', '-');
 
 -- --------------------------------------------------------
 
@@ -61,6 +80,15 @@ CREATE TABLE `requestes_status` (
   `id_req_stat` int NOT NULL,
   `title` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `requestes_status`
+--
+
+INSERT INTO `requestes_status` (`id_req_stat`, `title`) VALUES
+(1, 'Ожидание'),
+(2, 'Принято'),
+(3, 'Отклонено ');
 
 -- --------------------------------------------------------
 
@@ -89,10 +117,19 @@ INSERT INTO `roles` (`id_role`, `name_role`) VALUES
 --
 
 CREATE TABLE `status_request` (
-  `id_status` int NOT NULL,
+  `id_request` int NOT NULL,
   `stat` int NOT NULL,
   `update_req` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `status_request`
+--
+
+INSERT INTO `status_request` (`id_request`, `stat`, `update_req`) VALUES
+(35, 1, '2023-04-25 03:44:27'),
+(35, 2, '2023-04-25 05:44:56'),
+(37, 1, '2023-04-25 03:46:58');
 
 -- --------------------------------------------------------
 
@@ -154,7 +191,8 @@ INSERT INTO `users` (`id_user`, `surname`, `name`, `patronymic`, `phone_number`,
 (13, 'admin', 'admin', 'admin', '12', 'admin', '2023-03-17', '-', 'муж', '2023-03-21 07:14:04', '-', 2),
 (16, 'Недашковский ', 'Борислав ', 'Артемович', '543434343', 'ТАШВТАВГ51', '2032-04-25', 'free-icon-vk-3670029.png', 'жен', '2023-03-23 11:14:33', '-', 1),
 (17, 'Алексей', 'Семенов', 'Артемович', '852441228752', 'guhdbn453', '1997-10-16', 'aleksandr-ermolaev-personalnyj-trener-tz-min-250x400-934.jpg', 'муж', '2023-03-27 06:23:42', '-', 3),
-(18, 'Егор', 'Егоров', 'Егорович', '253', 'qwerty1', '2023-04-22', 'ю-и-портрет-s-че-овека-69803479.jpg', 'муж', '2023-04-24 07:17:23', '-', 1);
+(18, 'Егоров', 'Егор', 'Егорович', '253', 'qwerty1', '2023-04-22', 'ю-и-портрет-s-че-овека-69803479.jpg', 'муж', '2023-04-24 07:17:23', '-', 1),
+(19, 'Прохоров', 'Сергей', 'Олегович', '727', '727', '2002-02-06', '446128934473.jpg', 'муж', '2023-04-25 08:20:51', '-', 1);
 
 --
 -- Индексы сохранённых таблиц
@@ -174,8 +212,7 @@ ALTER TABLE `plans`
 ALTER TABLE `requestes`
   ADD PRIMARY KEY (`id_request`),
   ADD KEY `client_req` (`client_req`),
-  ADD KEY `trainer_req` (`trainer_req`),
-  ADD KEY `status_req` (`status_req`);
+  ADD KEY `trainer_req` (`trainer_req`);
 
 --
 -- Индексы таблицы `requestes_status`
@@ -193,8 +230,8 @@ ALTER TABLE `roles`
 -- Индексы таблицы `status_request`
 --
 ALTER TABLE `status_request`
-  ADD PRIMARY KEY (`id_status`),
-  ADD UNIQUE KEY `id_req_stat` (`stat`);
+  ADD KEY `id_request` (`id_request`),
+  ADD KEY `id_req_stat` (`stat`) USING BTREE;
 
 --
 -- Индексы таблицы `trainings`
@@ -231,13 +268,13 @@ ALTER TABLE `plans`
 -- AUTO_INCREMENT для таблицы `requestes`
 --
 ALTER TABLE `requestes`
-  MODIFY `id_request` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_request` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT для таблицы `requestes_status`
 --
 ALTER TABLE `requestes_status`
-  MODIFY `id_req_stat` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_req_stat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `roles`
@@ -249,7 +286,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT для таблицы `status_request`
 --
 ALTER TABLE `status_request`
-  MODIFY `id_status` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_request` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT для таблицы `trainings`
@@ -267,7 +304,7 @@ ALTER TABLE `types`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -285,14 +322,14 @@ ALTER TABLE `plans`
 --
 ALTER TABLE `requestes`
   ADD CONSTRAINT `requestes_ibfk_1` FOREIGN KEY (`client_req`) REFERENCES `users` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `requestes_ibfk_2` FOREIGN KEY (`trainer_req`) REFERENCES `users` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `requestes_ibfk_3` FOREIGN KEY (`status_req`) REFERENCES `status_request` (`id_status`);
+  ADD CONSTRAINT `requestes_ibfk_2` FOREIGN KEY (`trainer_req`) REFERENCES `users` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Ограничения внешнего ключа таблицы `status_request`
 --
 ALTER TABLE `status_request`
-  ADD CONSTRAINT `status_request_ibfk_1` FOREIGN KEY (`stat`) REFERENCES `requestes_status` (`id_req_stat`);
+  ADD CONSTRAINT `status_request_ibfk_2` FOREIGN KEY (`id_request`) REFERENCES `requestes` (`id_request`),
+  ADD CONSTRAINT `status_request_ibfk_3` FOREIGN KEY (`stat`) REFERENCES `requestes_status` (`id_req_stat`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Ограничения внешнего ключа таблицы `trainings`
