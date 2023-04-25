@@ -11,6 +11,7 @@ session_start();
     <title>Фитнес</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <div class="logo">
@@ -19,6 +20,7 @@ session_start();
         <nav>
             <a href="/">Главная</a>
             <a href="/">Наша команда</a>
+
             <?php
 
             if (empty($_SESSION)) {
@@ -26,7 +28,7 @@ session_start();
             } else if ($_SESSION['role'] == 2) {
                 echo "<a href='/editTrener.php'>Редактировать</a><a href='/addTrener.php'>Добавить</a><a href='/destroy.php'class='logout'>Выйти</a>";
             } else {
-                echo "<a href='/account.php'class='account'>Личный кабинет</a><a href='/application.php'class='account'>Отправить заявку</a><a href='/destroy.php'class='account'>Выйти</a>";
+                echo "<a href='/account.php'class='account'>Личный кабинет</a><a href='/application.php'class='account'>Отправить заявку</a><a href='/applicationUser.php'>Ваши заявки</a><a href='/destroy.php'class='account'>Выйти</a>";
             }
             ?>
 

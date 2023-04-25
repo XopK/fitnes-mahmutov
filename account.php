@@ -1,8 +1,11 @@
 <?php
-include("header.php");
 session_start();
+include("header.php");
+?>
+</html>
+<?php
 $sess = $_SESSION["phoneUser"];
-if(isset($sess)){
+if (isset($sess)) {
     $con = mysqli_connect("localhost", "root", "root", "fitnes");
     $sql_query = "select surname, name, patronymic, photo from users where phone_number = '$sess'";
     $result = mysqli_query($con, $sql_query);
@@ -10,6 +13,8 @@ if(isset($sess)){
 }
 ?>
 <div class="container">
-    <h1>Здраствуй, <?=$info['surname'];?></h1>
-    <img src="/img/<?=$info['photo'];?>" alt="<?=$info['photo'];?>" class = "accPhoto">
+    <div class="acc">
+        <h1>Здраствуй, <?= $info['name']; ?></h1>
+        <img src="/img/<?= $info['photo']; ?>" alt="<?= $info['photo']; ?>">
+    </div>
 </div>

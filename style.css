@@ -81,6 +81,9 @@ nav {
   display: flex;
   align-items: center;
 }
-.accPhoto{
-  width: 10px;
+.acc > img {
+  width: 50%;
+}
+.input-group > textarea {
+  resize: none;
 }
